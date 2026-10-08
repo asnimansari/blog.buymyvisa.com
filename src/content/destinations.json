@@ -75,5 +75,24 @@
       "processing": "About 15 calendar days",
       "officialUrl": "https://visa.vfsglobal.com/ind/en/isl"
     }
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore",
+    "iso3": "SGP",
+    "scene": "thailand",
+    "tagline": "A clean, compact city-state of gardens, hawker food and theme parks, five hours from India.",
+    "capital": "Singapore",
+    "currency": "Singapore dollar (SGD), roughly ₹65–70",
+    "timezone": "IST + 2:30",
+    "flightFromIndia": "About 4 h 30 m from Chennai, 5 h 30 m from Delhi or Mumbai",
+    "bestMonths": [2, 3, 4, 5, 6, 7],
+    "visa": {
+      "type": "Visa required (via an authorised agent) + SG Arrival Card",
+      "stay": "Set by the visit pass issued at the checkpoint",
+      "govFee": "Not stated by ICA; set by the visa agent",
+      "processing": "Ask the agent; SG Arrival Card within 3 days before arrival",
+      "officialUrl": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements"
+    }
   }
 ]
