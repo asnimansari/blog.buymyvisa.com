@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import Scene from "../components/scene/Scene.astro";
 import GuideCard from "../components/GuideCard.astro";
 import Signature from "../components/Signature.astro";
-import { DEFAULT_DESCRIPTION, ORG_URL, SITE_NAME, absolute, href, organization, visaName } from "../lib/seo";
+import { DEFAULT_DESCRIPTION, ORG_URL, SITE_NAME, absolute, href, organization, visaName, WEBSITE_ID } from "../lib/seo";
 
 const guides = (await getCollection("guides", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
@@ -16,6 +16,7 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: SITE_NAME,
     url: absolute(href(), Astro.site),
     publisher: { "@id": `${ORG_URL}#org` },

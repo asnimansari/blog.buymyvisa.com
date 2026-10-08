@@ -26,7 +26,7 @@ mise run fmt | lint | check         # check = lint + astro check + build (what C
 | `src/components/` | `Photo` (optimised Unsplash photo + credit), `GuideCard`, `FactBox`, `RouteMap`, `Faq`, `VisaCta`, `Signature`, `seo/Seo` |
 | `src/pages/` | `/`, `/guides/`, `/guides/<slug>/`, `/destinations/`, `/destinations/<id>/`, `/about/`, `/404`, `/rss.xml` |
 | `src/styles/` | `tokens.css` (colour tokens per time of day), `global.css` (type, layout, cards, prose), `scene.css` (scene colours, keyframes, parallax) |
-| `public/` | `favicon.svg`, `og-default.jpg` (1200×630 social card, a capture of the home scene at dusk) |
+| `public/` | `favicon.svg`, `apple-touch-icon.png` (180) and `logo-512.png` (the Organization logo), both rendered from the favicon; `og-default.jpg` (1200×630 social card, a capture of the home scene at dusk) |
 
 ## Schemas
 Canonical: `src/content.config.ts`. Both collections are build-time only (no API).
@@ -81,6 +81,16 @@ Structured data per page: `BlogPosting` + `BreadcrumbList` + `FAQPage` on guides
 - **Photos:** hand-picked Unsplash photos, downloaded at build time from `images.unsplash.com` (a 1800 px JPEG via `unsplashSrc()`), re-encoded to AVIF/WebP/JPEG at several widths and served from our domain. Each photo is credited as "Photo by <name> on Unsplash", linking the photo page and Unsplash with `utm_source=buymyvisa&utm_medium=referral`. The credit links the photo page rather than the photographer's profile, because profile usernames couldn't be verified when picking. Rejected: hotlinking (slower LCP, third-party requests).
 - **Facts:** every guide's entry rules are checked against the official site when written, the date goes in `factsCheckedAt` and is shown, and each guide links the official source. Where a fact comes from our own filing work (the TDAC window, VFS Iceland fees seen on 2026-10-02), it matches the myvisa repo's `visa-forms/` and `backend/app/products.py`. Update the guide when those change. Budgets are per-person, mid-range estimates in rupees.
 - **Product pointer:** myvisa is B2B, so the Thailand box speaks to travel companies filing TDACs for their travellers, not to individual travellers. Other destinations only point to the official site and warn about look-alike sites.
-- **robots.txt** belongs at the domain root (`buymyvisa.com/robots.txt`), which this site doesn't serve. When deploying, add `Sitemap: https://buymyvisa.com/blog/sitemap-index.xml` there.
+- **SEO in the pages:**
+  - `<title>` drops the " | buymyvisa travel guides" suffix when it would pass 60 characters, so long guide titles aren't cut off in search results.
+  - A guide's social card is its hero, cropped to 1200×630 at build time and served from our domain.
+  - Indexable pages send `max-image-preview:large`.
+  - Sitemap `<lastmod>`: a guide's `updatedAt` (else `publishedAt`); hubs and indexes, the newest of their guides. It's read from the frontmatter in `astro.config.mjs`.
+- **Hosting:** the shared Caddy at `/home/ubuntu/personal/caddy` (Docker, host networking) serves `dist/`. The repo is mounted at `/srv/blog`, so deploying is `mise run build`. Caddy, not this site:
+  - serves `buymyvisa.com/robots.txt` with the `Sitemap:` line;
+  - 301s `…/index.html` to the directory URL;
+  - 301s `www` to the apex;
+  - sends HSTS;
+  - 302s `/` to `/blog/` until the myvisa app is hosted there.
 - **Fonts** are self-hosted through Astro's fonts API (Google provider at build time), so readers make no requests to Google.
 - **Tooling:** mise for node and tasks; oxlint + oxfmt (`src`, including `.astro`, `.mdx` and `.css`), `astro check` and `typos` in `mise run check`.

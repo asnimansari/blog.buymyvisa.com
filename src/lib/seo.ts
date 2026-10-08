@@ -42,8 +42,11 @@ export const organization = {
   "@id": `${ORG_URL}#org`,
   name: ORG_NAME,
   url: ORG_URL,
+  logo: "https://buymyvisa.com/blog/logo-512.png",
   email: "visa@buymyvisa.com",
 } as const;
+
+export const WEBSITE_ID = "https://buymyvisa.com/blog/#website";
 
 export function breadcrumbs(items: { name: string; url: string }[]) {
   return {

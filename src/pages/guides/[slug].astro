@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Scene from "../../components/scene/Scene.astro";
@@ -9,7 +10,7 @@ import VisaCta from "../../components/VisaCta.astro";
 import Faq from "../../components/Faq.astro";
 import Signature from "../../components/Signature.astro";
 import GuideCard from "../../components/GuideCard.astro";
-import { absolute, breadcrumbs, faqPage, formatDate, href, organization, unsplashSrc } from "../../lib/seo";
+import { WEBSITE_ID, absolute, breadcrumbs, faqPage, formatDate, href, organization, unsplashSrc } from "../../lib/seo";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guides", ({ data }) => !data.draft);
@@ -27,7 +28,9 @@ const { Content, headings } = await render(guide);
 const others = (await getCollection("guides", ({ data, id }) => !data.draft && id !== guide.id)).slice(0, 3);
 
 const url = absolute(Astro.url.pathname, Astro.site);
-const socialImage = unsplashSrc(g.hero.src, 1200);
+// The social card: the hero cropped to 1200×630 and served from our domain, like the page's photos.
+const card = await getImage({ src: unsplashSrc(g.hero.src), width: 1200, height: 630, fit: "cover", format: "jpg" });
+const socialImage = { src: absolute(card.src, Astro.site), width: 1200, height: 630, alt: g.hero.alt };
 const hubUrl = href(`destinations/${destination.id}`);
 const jsonLd = [
   {
@@ -35,12 +38,14 @@ const jsonLd = [
     "@type": "BlogPosting",
     headline: g.title,
     description: g.description,
-    image: [socialImage],
+    image: [socialImage.src],
     datePublished: g.publishedAt.toISOString(),
     dateModified: (g.updatedAt ?? g.publishedAt).toISOString(),
     author: organization,
     publisher: organization,
     mainEntityOfPage: url,
+    isPartOf: { "@id": WEBSITE_ID },
+    inLanguage: "en-IN",
     about: { "@type": "Country", name: destination.data.name },
     keywords: g.tags.join(", "),
   },
