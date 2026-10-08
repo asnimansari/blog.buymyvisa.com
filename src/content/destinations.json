@@ -132,5 +132,24 @@
       "processing": "No application; submit the MDAC 3 days before arrival",
       "officialUrl": "https://www.kln.gov.my/web/ind_new-delhi/requirement_foreigner"
     }
+  },
+  {
+    "id": "maldives",
+    "name": "Maldives",
+    "iso3": "MDV",
+    "scene": "thailand",
+    "tagline": "Turquoise lagoons and local-island guesthouses, with a free visa on arrival and a short online declaration.",
+    "capital": "Malé",
+    "currency": "Maldivian rufiyaa (MVR); US dollars are widely used",
+    "timezone": "IST − 0:30",
+    "flightFromIndia": "About 2 h from Thiruvananthapuram or Kochi, 3 to 4 h 30 m from Bengaluru, Mumbai or Delhi",
+    "bestMonths": [12, 1, 2, 3, 4],
+    "visa": {
+      "type": "Tourist visa issued on arrival, plus the online Traveller Declaration (IMUGA)",
+      "stay": "30 days according to Maldives mission pages; the immigration page we fetched does not state a length",
+      "govFee": "Free; the Traveller Declaration is also free",
+      "processing": "No application; submit the Traveller Declaration online, up to 96 hours before arrival",
+      "officialUrl": "https://immigration.gov.mv/visa/tourist-visa"
+    }
   }
 ]
