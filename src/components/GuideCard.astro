@@ -9,6 +9,7 @@ interface Props {
 }
 const { guide, priority = false } = Astro.props;
 const g = guide.data;
+// The hero is cropped to a fixed 3:2 at build time; "attention" keeps the busiest part of portrait shots.
 const destination = (await getEntry(g.destination))!;
 ---
 
@@ -16,7 +17,10 @@ const destination = (await getEntry(g.destination))!;
   <Picture
     src={unsplashSrc(g.hero.src, 1000)}
     alt={g.hero.alt}
-    inferSize
+    width={900}
+    height={600}
+    fit="cover"
+    position="attention"
     widths={[400, 640, 900]}
     sizes="(min-width: 1120px) 360px, (min-width: 700px) 45vw, 100vw"
     formats={["avif", "webp"]}
