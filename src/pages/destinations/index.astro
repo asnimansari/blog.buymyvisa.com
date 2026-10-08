@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Scene from "../../components/scene/Scene.astro";
+import { absolute, breadcrumbs, href } from "../../lib/seo";
+
+const destinations = await getCollection("destinations");
+const jsonLd = [breadcrumbs([{ name: "Destinations", url: absolute(href("destinations"), Astro.site) }])];
+---
+
+<Base
+  title="Destinations for Indian travellers"
+  description="Entry rules, best months and trip guides for Indian passport holders: Thailand, Sri Lanka, Vietnam and Iceland."
+  jsonLd={jsonLd}
+>
+  <Scene name="home" max="56vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <h1>Destinations</h1>
+        <p class="lede">What each country asks of an Indian passport, and when to go.</p>
+      </div>
+    </div>
+  </Scene>
+  <div class="narrow prose">
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Country</th><th scope="col">Entry</th><th scope="col">Stay</th></tr>
+        </thead>
+        <tbody>
+          {
+            destinations.map((d) => (
+              <tr>
+                <td>
+                  <a href={href(`destinations/${d.id}`)}>{d.data.name}</a>
+                </td>
+                <td>{d.data.visa.type}</td>
+                <td>{d.data.visa.stay}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .prose td:last-child,
+  .prose th:last-child {
+    white-space: normal;
+    text-align: left;
+  }
+</style>

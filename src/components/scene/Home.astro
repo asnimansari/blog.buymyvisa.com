@@ -1,0 +1,64 @@
+---
+/** The home panorama: one skyline from every guide (karsts, Sigiriya, a glacier peak), with a plane on its route. */
+import { mesa, peak, ridge, rolling } from "../../lib/shapes";
+import Karst from "./Karst.astro";
+
+const glacier = peak(1240, 440, 400, 260);
+const route = "M-60 300 C240 160 520 120 800 170 S1300 260 1680 90";
+const shore = ridge([
+  [-40, 548],
+  [260, 532],
+  [620, 552],
+  [1000, 560],
+  [1300, 540],
+  [1640, 530],
+]);
+---
+
+<path class="route-trail" d={route}></path>
+<g class="plane-path" style={`offset-path: path("${route}")`}>
+  <use href="#plane" class="plane" width="54" height="19" x="-27" y="-9"></use>
+</g>
+
+<g class="layer layer-far">
+  <path class="far" d={rolling(9, 8, 450, 380)}></path>
+  <path class="rock-far" d={glacier.rock}></path>
+  <path class="snow" d={glacier.snow}></path>
+  <Karst x={90} base={460} w={90} h={190} lean={6} far />
+  <Karst x={200} base={460} w={60} h={130} far />
+</g>
+
+<g class="layer layer-mid">
+  <path class="rock" d={mesa(1010, 474, 200, 200)}></path>
+  <path class="mid" d={rolling(13, 7, 500, 440)}></path>
+  <Karst x={250} base={488} w={130} h={250} lean={10} />
+</g>
+
+<rect class="sea" x="0" y="486" width="1600" height="114"></rect>
+<path class="shimmer" d="M80 506 H500 M640 520 H1180 M1260 508 H1560"></path>
+
+<g class="sail-across" style="--dur:150s; --delay:-60s">
+  <g transform="translate(0 510)"
+    ><g class="bob">
+      <path class="wood" d="M0 0 H120 Q130 0 136 -10 L140 -8 Q132 14 116 16 H18 Q4 14 0 0Z"></path>
+      <path class="sail" d="M30 -4 Q22 -40 34 -78 L64 -74 Q56 -40 62 -4Z"></path>
+      <circle class="halo" cx="50" cy="-6" r="26"></circle>
+    </g></g
+  >
+</g>
+
+<g class="layer layer-near">
+  <path class="sand" d={shore}></path>
+  <use href="#palm" class="palm" x="30" y="340" width="140" height="220"></use>
+  <use href="#palm" class="palm" x="1440" y="330" width="140" height="220" style="animation-delay:-3s"></use>
+</g>
+
+<style>
+  .plane-path {
+    offset-rotate: auto;
+    animation: fly 38s linear infinite;
+  }
+  .plane {
+    animation: none;
+  }
+</style>

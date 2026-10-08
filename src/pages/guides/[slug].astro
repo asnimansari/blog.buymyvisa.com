@@ -1,0 +1,148 @@
+---
+import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Scene from "../../components/scene/Scene.astro";
+import Photo from "../../components/Photo.astro";
+import FactBox from "../../components/FactBox.astro";
+import RouteMap from "../../components/RouteMap.astro";
+import VisaCta from "../../components/VisaCta.astro";
+import Faq from "../../components/Faq.astro";
+import Signature from "../../components/Signature.astro";
+import GuideCard from "../../components/GuideCard.astro";
+import { absolute, breadcrumbs, faqPage, formatDate, href, organization, unsplashSrc } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides", ({ data }) => !data.draft);
+  return guides.map((guide) => ({ params: { slug: guide.id }, props: { guide } }));
+}
+
+interface Props {
+  guide: CollectionEntry<"guides">;
+}
+
+const { guide } = Astro.props;
+const g = guide.data;
+const destination = (await getEntry(g.destination))!;
+const { Content, headings } = await render(guide);
+const others = (await getCollection("guides", ({ data, id }) => !data.draft && id !== guide.id)).slice(0, 3);
+
+const url = absolute(Astro.url.pathname, Astro.site);
+const socialImage = unsplashSrc(g.hero.src, 1200);
+const hubUrl = href(`destinations/${destination.id}`);
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: g.title,
+    description: g.description,
+    image: [socialImage],
+    datePublished: g.publishedAt.toISOString(),
+    dateModified: (g.updatedAt ?? g.publishedAt).toISOString(),
+    author: organization,
+    publisher: organization,
+    mainEntityOfPage: url,
+    about: { "@type": "Country", name: destination.data.name },
+    keywords: g.tags.join(", "),
+  },
+  breadcrumbs([
+    { name: "Guides", url: absolute(href("guides"), Astro.site) },
+    { name: destination.data.name, url: absolute(hubUrl, Astro.site) },
+    { name: g.title, url },
+  ]),
+  faqPage(g.faq),
+];
+const toc = headings.filter((h) => h.depth === 2);
+---
+
+<Base
+  title={g.title}
+  description={g.description}
+  image={socialImage}
+  type="article"
+  publishedAt={g.publishedAt}
+  updatedAt={g.updatedAt}
+  jsonLd={jsonLd}
+>
+  <Scene name={destination.data.scene} max="78vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href={href("guides")}>Guides</a></li>
+            <li><a href={hubUrl}>{destination.data.name}</a></li>
+            <li aria-current="page" class="visually-hidden">{g.title}</li>
+          </ol>
+        </nav>
+        <h1 class="title-sm">{g.title}</h1>
+        <p class="lede">{g.description}</p>
+      </div>
+    </div>
+  </Scene>
+
+  <article class="narrow">
+    <p class="updated">
+      {g.tripDays} days · Published {formatDate(g.publishedAt)}
+      {g.updatedAt && <> · Updated {formatDate(g.updatedAt)}</>}
+    </p>
+    <Photo {...g.hero} priority sizes="(min-width: 760px) 680px, 100vw" />
+    <FactBox destination={destination} tripDays={g.tripDays} budgetInr={g.budgetInr} factsCheckedAt={g.factsCheckedAt} />
+
+    {
+      toc.length > 2 && (
+        <nav class="toc ui" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            {toc.map((h) => (
+              <li>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <RouteMap stops={g.stops} title={`${g.tripDays} days in ${destination.data.name}`} />
+    <div class="prose">
+      <Content components={{ Photo }} />
+    </div>
+    <VisaCta destination={destination} />
+    <Faq faq={g.faq} />
+    <Signature />
+  </article>
+
+  {
+    others.length > 0 && (
+      <section class="wrap more" aria-labelledby="more">
+        <h2 id="more">More trip guides</h2>
+        <div class="grid">
+          {others.map((o) => (
+            <GuideCard guide={o} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  article {
+    padding-top: 8px;
+  }
+  .toc {
+    margin: 0 0 2.4em;
+    font-size: 0.95rem;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.2em;
+    columns: 2 220px;
+    gap: 24px;
+  }
+  .toc li {
+    margin-block: 4px;
+  }
+  .more {
+    margin-top: 80px;
+  }
+</style>

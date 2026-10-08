@@ -1,0 +1,113 @@
+---
+/** Quick facts for a guide: the destination's entry rules plus the trip's length and budget. */
+import type { CollectionEntry } from "astro:content";
+import { formatDate, inr } from "../lib/seo";
+
+interface Props {
+  destination: CollectionEntry<"destinations">;
+  tripDays: number;
+  budgetInr: { low: number; high: number };
+  factsCheckedAt: Date;
+}
+
+const { destination, tripDays, budgetInr, factsCheckedAt } = Astro.props;
+const d = destination.data;
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const rows = [
+  ["Entry", d.visa.type],
+  ["Stay allowed", d.visa.stay],
+  ["Government fee", d.visa.govFee],
+  ["Processing", d.visa.processing],
+  ["Trip length", `${tripDays} days`],
+  ["Budget per person", `${inr(budgetInr.low)} – ${inr(budgetInr.high)}`],
+  ["Flight from India", d.flightFromIndia],
+  ["Currency", d.currency],
+  ["Time difference", d.timezone],
+] as const;
+---
+
+<aside class="facts" aria-labelledby="facts-title">
+  <h2 id="facts-title" class="ui">Quick facts</h2>
+  <dl>
+    {
+      rows.map(([k, v]) => (
+        <div>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <div class="months" aria-label={`Best months: ${d.bestMonths.map((m) => MONTHS[m - 1]).join(", ")}`}>
+    {
+      MONTHS.map((m, i) => (
+        <span class:list={{ best: d.bestMonths.includes(i + 1) }} aria-hidden="true">
+          {m[0]}
+        </span>
+      ))
+    }
+  </div>
+  <p class="checked">
+    Entry rules checked {formatDate(factsCheckedAt)} against the <a href={d.visa.officialUrl} rel="noopener">official site</a>.
+    Rules change; check again before you book.
+  </p>
+</aside>
+
+<style>
+  .facts {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+    margin: 0 0 2.4em;
+    font-family: var(--font-sans-stack);
+  }
+  h2 {
+    font: 600 0.8rem/1 var(--font-sans-stack);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 14px 24px;
+  }
+  dt {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  dd {
+    margin: 2px 0 0;
+    font-size: 0.97rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .months {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin: 20px 0 6px;
+  }
+  .months span {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 0;
+    border-radius: 6px;
+    background: var(--tint);
+    color: var(--muted);
+  }
+  .months .best {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .checked {
+    margin: 14px 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+</style>

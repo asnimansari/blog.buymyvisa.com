@@ -1,0 +1,137 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Scene from "../components/scene/Scene.astro";
+import GuideCard from "../components/GuideCard.astro";
+import Signature from "../components/Signature.astro";
+import { DEFAULT_DESCRIPTION, ORG_URL, SITE_NAME, absolute, href, organization, visaName } from "../lib/seo";
+
+const guides = (await getCollection("guides", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const destinations = await getCollection("destinations");
+
+const jsonLd = [
+  { "@context": "https://schema.org", ...organization },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: absolute(href(), Astro.site),
+    publisher: { "@id": `${ORG_URL}#org` },
+    inLanguage: "en-IN",
+  },
+];
+---
+
+<Base title={SITE_NAME} description={DEFAULT_DESCRIPTION} jsonLd={jsonLd}>
+  <Scene name="home" max="86vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <p class="eyebrow">Trip guides for Indian passports</p>
+        <h1>Go further, with the paperwork sorted.</h1>
+        <p class="lede">
+          Costed, day-by-day guides to the places Indians love to travel, with the visa and entry rules checked
+          against official sources.
+        </p>
+      </div>
+    </div>
+  </Scene>
+
+  <section class="wrap" aria-labelledby="latest">
+    <div class="section-head">
+      <h2 id="latest">Latest guides</h2>
+      <a class="ui" href={href("guides")}>All guides →</a>
+    </div>
+    <div class="grid">
+      {guides.map((g, i) => <GuideCard guide={g} priority={i < 2} />)}
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="where">
+    <div class="section-head">
+      <h2 id="where">Where can you go?</h2>
+    </div>
+    <ul class="dest-list">
+      {
+        destinations.map((d) => (
+          <li>
+            <a href={href(`destinations/${d.id}`)}>
+              <span class="dest-name">{d.data.name}</span>
+              <span class="dest-visa ui">
+                {visaName(d.data.visa.type)} · {d.data.visa.stay}
+              </span>
+              <span class="dest-tag">{d.data.tagline}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="narrow promise">
+    <h2>How we write these</h2>
+    <p>
+      Every guide starts from a real itinerary and a real budget in rupees. The visa and entry section is checked
+      against the official government site, and each guide shows the date we last checked it. When rules change,
+      we update the guide and say so at the top.
+    </p>
+    <Signature text="See you out there" />
+  </section>
+</Base>
+
+<style>
+  section {
+    margin-top: 72px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .section-head h2 {
+    margin: 0;
+  }
+  .dest-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: 16px;
+  }
+  .dest-list a {
+    display: grid;
+    gap: 6px;
+    height: 100%;
+    padding: 20px;
+    border-radius: var(--radius);
+    background: var(--tint);
+    border: 1px solid var(--rule);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.25s ease;
+  }
+  .dest-list a:hover {
+    transform: translateY(-3px);
+  }
+  .dest-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .dest-visa {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .dest-tag {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .promise h2 {
+    margin-top: 0;
+  }
+</style>

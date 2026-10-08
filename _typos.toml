@@ -1,0 +1,12 @@
+# typos (spell checker) config. Run: `mise run lint`. Only add genuine vocabulary here.
+
+[files]
+extend-exclude = ["node_modules/**", "dist/**", ".astro/**", "package-lock.json", "*.svg", "*.jpg", "*.png"]
+
+[default.extend-words]
+# Indian Standard Time, in the time-difference facts
+ist = "ist"
+# Thai "nam pla" (fish sauce), in the Thailand guide
+nam = "nam"
+# ISO 3166 alpha-3 codes (Thailand)
+tha = "tha"

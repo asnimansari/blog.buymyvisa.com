@@ -1,0 +1,68 @@
+---
+/** South coast: glacier peaks, a smoking volcano, a Skógafoss-style waterfall, black sand, a lighthouse; aurora at night. */
+import { peak, ridge, rolling } from "../../lib/shapes";
+
+const peaks = [peak(-40, 430, 420, 250), peak(300, 430, 360, 200), peak(980, 430, 440, 270), peak(1300, 430, 380, 220)];
+const cliff = ridge([
+  [-40, 330],
+  [180, 318],
+  [420, 326],
+  [560, 338],
+  [600, 340],
+]);
+const sand = ridge([
+  [-40, 540],
+  [300, 530],
+  [700, 546],
+  [1100, 538],
+  [1640, 548],
+]);
+---
+
+<g class="aurora" aria-hidden="true">
+  <path d="M-100 150 C200 60 420 200 700 110 S1200 40 1700 140" stroke="#6ef2b2"></path>
+  <path d="M-100 220 C260 140 520 250 860 170 S1300 120 1700 210" stroke="#9b7cff"></path>
+</g>
+
+<g class="layer layer-far">
+  {
+    peaks.map((p) => (
+      <g>
+        <path class="rock-far" d={p.rock} />
+        <path class="snow" d={p.snow} />
+      </g>
+    ))
+  }
+  <path class="rock" d="M660 430 L760 300 L790 296 L820 300 L920 430 Z"></path>
+  <ellipse class="smoke" cx="790" cy="280" rx="26" ry="16"></ellipse>
+  <ellipse class="smoke" cx="796" cy="280" rx="22" ry="14" style="animation-delay:-3s"></ellipse>
+  <ellipse class="smoke" cx="784" cy="280" rx="24" ry="15" style="animation-delay:-6s"></ellipse>
+</g>
+
+<g class="layer layer-mid">
+  <path class="mid" d={rolling(5, 6, 470, 420)}></path>
+  <path class="near" d={cliff}></path>
+  <line class="fall" x1="566" y1="338" x2="566" y2="470"></line>
+  <line class="fall" x1="578" y1="340" x2="578" y2="470" style="animation-delay:-0.4s"></line>
+  <ellipse cx="572" cy="474" rx="40" ry="8" fill="#fff" opacity="0.6"></ellipse>
+</g>
+
+<rect class="sea" x="0" y="486" width="1600" height="114"></rect>
+<path class="shimmer" d="M640 506 H1000 M1100 520 H1500"></path>
+
+<g class="layer layer-near">
+  <path class="rock" d="M1180 520 L1196 420 L1212 410 L1226 520 Z M1240 524 L1252 446 L1266 440 L1276 524 Z"></path>
+  <path class="basalt" d={sand}></path>
+  <path class="beam" d="M1470 382 L1700 340 L1700 424 Z" style="transform-origin: 1470px 382px"></path>
+  <rect x="1458" y="380" width="24" height="140" fill="#f4f4f4"></rect>
+  <rect x="1458" y="410" width="24" height="18" class="sail"></rect>
+  <rect x="1458" y="460" width="24" height="18" class="sail"></rect>
+  <rect x="1454" y="368" width="32" height="14" fill="var(--ink)"></rect>
+  <circle class="light" cx="1470" cy="375" r="5"></circle>
+</g>
+
+<style>
+  .basalt {
+    fill: color-mix(in srgb, var(--ground) 35%, #24262c);
+  }
+</style>

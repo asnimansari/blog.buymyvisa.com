@@ -1,0 +1,32 @@
+# Single entry point for tool versions and tasks. See AGENTS.md.
+[tools]
+node = "24"
+typos = "latest"
+
+[tasks.setup]
+description = "Install tools and dependencies"
+run = ["mise install", "npm ci || npm install"]
+
+[tasks.dev]
+description = "Run the site with reload"
+run = "npx astro dev --host 127.0.0.1 --port ${PORT:-4321}"
+
+[tasks.build]
+description = "Type-check and build into dist/ (downloads the Unsplash photos)"
+run = "npm run build"
+
+[tasks.preview]
+description = "Serve the built site"
+run = "npx astro preview --host 127.0.0.1 --port ${PORT:-4321}"
+
+[tasks.fmt]
+description = "Format the source"
+run = "npx oxfmt src"
+
+[tasks.lint]
+description = "Lint, format check and spell check"
+run = ["npx oxlint -c .oxlintrc.json src", "npx oxfmt --check src", "typos"]
+
+[tasks.check]
+description = "Everything CI runs"
+run = ["mise run lint", "npx astro check", "npm run build"]

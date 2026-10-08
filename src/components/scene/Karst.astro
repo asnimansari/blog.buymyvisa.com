@@ -1,0 +1,21 @@
+---
+/** A limestone karst tower with vertical weathering streaks and jungle on its crown. */
+import { karst, karstTufts } from "../../lib/shapes";
+
+interface Props {
+  x: number;
+  base: number;
+  w: number;
+  h: number;
+  lean?: number;
+  far?: boolean;
+}
+const { x, base, w, h, lean = 0, far = false } = Astro.props;
+const d = karst(x, base, w, h, lean);
+---
+
+<g>
+  <path class={far ? "rock-far" : "rock"} d={d}></path>
+  <path d={d} fill="url(#streaks)"></path>
+  {karstTufts(x, base, w, h, lean).map((t) => <ellipse class={far ? "tuft-far" : "tuft"} cx={t.cx} cy={t.cy} rx={t.rx} ry={t.ry} />)}
+</g>

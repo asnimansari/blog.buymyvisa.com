@@ -1,0 +1,163 @@
+---
+/**
+ * A Polarsteps-style route: a dashed path through the itinerary stops that draws itself as it scrolls
+ * into view, with numbered pins. Stops are placed by hand on a 600×360 canvas.
+ */
+interface Stop {
+  name: string;
+  days: string;
+  x: number;
+  y: number;
+}
+interface Props {
+  stops: Stop[];
+  title: string;
+}
+
+const { stops, title } = Astro.props;
+
+// smooth the route through the stops with gentle quadratic bends
+let d = `M${stops[0]!.x},${stops[0]!.y}`;
+for (let i = 1; i < stops.length; i++) {
+  const a = stops[i - 1]!;
+  const b = stops[i]!;
+  const mx = (a.x + b.x) / 2 + (b.y - a.y) * 0.25;
+  const my = (a.y + b.y) / 2 - (b.x - a.x) * 0.25;
+  d += ` Q${mx.toFixed(1)},${my.toFixed(1)} ${b.x},${b.y}`;
+}
+const label = `${title}: ${stops.map((s) => `${s.name} (${s.days})`).join(", then ")}`;
+---
+
+<figure class="route">
+  <svg viewBox="0 0 600 360" role="img" aria-label={label}>
+    <defs>
+      <pattern id="route-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <path d="M24 0 H0 V24" fill="none" class="grid-line"></path>
+      </pattern>
+    </defs>
+    <rect width="600" height="360" rx="14" class="paper"></rect>
+    <rect width="600" height="360" rx="14" fill="url(#route-grid)"></rect>
+    <path d={d} class="trail-under"></path>
+    <path d={d} class="trail" pathLength="1"></path>
+    {
+      stops.map((s) => (
+        <circle cx={s.x} cy={s.y} r="13" class="pin-dot" />
+      ))
+    }
+    {
+      stops.map((s, i) => {
+        const right = s.x < 430;
+        return (
+          <g>
+            <text x={s.x} y={s.y + 4.5} text-anchor="middle" class="pin-n">
+              {i + 1}
+            </text>
+            <text x={right ? s.x + 20 : s.x - 20} y={s.y - 2} text-anchor={right ? "start" : "end"} class="pin-name">
+              {s.name}
+            </text>
+            <text x={right ? s.x + 20 : s.x - 20} y={s.y + 15} text-anchor={right ? "start" : "end"} class="pin-days">
+              {s.days}
+            </text>
+          </g>
+        );
+      })
+    }
+    <g transform="translate(556 44)" class="compass" aria-hidden="true">
+      <circle r="18"></circle>
+      <path d="M0 -14 L5 0 L0 14 L-5 0 Z"></path>
+      <text y="-22" text-anchor="middle">N</text>
+    </g>
+  </svg>
+  <figcaption class="hand">{title}</figcaption>
+</figure>
+
+<style>
+  .route {
+    margin: 2em 0;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 6px 18px #1d273314);
+  }
+  .paper {
+    fill: var(--paper);
+    stroke: var(--rule);
+  }
+  .grid-line {
+    stroke: var(--rule);
+    stroke-width: 1;
+  }
+  .trail-under {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 3;
+    stroke-dasharray: 3 7;
+    stroke-linecap: round;
+  }
+  .trail {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  @supports (animation-timeline: view()) {
+    .trail {
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 55%;
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .pin-dot {
+    fill: var(--accent);
+    stroke: var(--paper);
+    stroke-width: 3;
+  }
+  .pin-n {
+    font: 700 12px var(--font-sans-stack);
+    fill: var(--accent-ink);
+  }
+  .pin-name {
+    font: 600 16px var(--font-sans-stack);
+    fill: var(--text);
+  }
+  .pin-days {
+    font: 500 13px var(--font-sans-stack);
+    fill: var(--muted);
+  }
+  /* a paper-coloured halo keeps labels readable where the trail passes behind them */
+  .pin-name,
+  .pin-days {
+    paint-order: stroke;
+    stroke: var(--paper);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .compass circle {
+    fill: none;
+    stroke: var(--rule);
+  }
+  .compass path {
+    fill: var(--muted);
+  }
+  .compass text {
+    font: 600 11px var(--font-sans-stack);
+    fill: var(--muted);
+  }
+  figcaption {
+    margin-top: 6px;
+    font-size: 1.3rem;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>

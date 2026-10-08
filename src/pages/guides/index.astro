@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Scene from "../../components/scene/Scene.astro";
+import GuideCard from "../../components/GuideCard.astro";
+import { absolute, breadcrumbs, href } from "../../lib/seo";
+
+const guides = (await getCollection("guides", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const jsonLd = [
+  breadcrumbs([{ name: "Guides", url: absolute(href("guides"), Astro.site) }]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: guides.map((g, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: absolute(href(`guides/${g.id}`), Astro.site),
+      name: g.data.title,
+    })),
+  },
+];
+---
+
+<Base
+  title="All trip guides"
+  description="Every buymyvisa trip guide: itineraries, budgets in rupees and visa rules for Indian travellers to Thailand, Sri Lanka, Vietnam and Iceland."
+  jsonLd={jsonLd}
+>
+  <Scene name="home" max="56vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <h1>All trip guides</h1>
+        <p class="lede">Itineraries, rupee budgets and entry rules, one country at a time.</p>
+      </div>
+    </div>
+  </Scene>
+  <section class="wrap">
+    <div class="grid">
+      {guides.map((g, i) => <GuideCard guide={g} priority={i < 2} />)}
+    </div>
+  </section>
+</Base>

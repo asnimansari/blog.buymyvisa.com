@@ -1,0 +1,87 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Scene from "../../components/scene/Scene.astro";
+import GuideCard from "../../components/GuideCard.astro";
+import VisaCta from "../../components/VisaCta.astro";
+import { absolute, breadcrumbs, href, visaName } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const destinations = await getCollection("destinations");
+  return destinations.map((destination) => ({ params: { country: destination.id }, props: { destination } }));
+}
+
+interface Props {
+  destination: CollectionEntry<"destinations">;
+}
+const { destination } = Astro.props;
+const d = destination.data;
+const guides = await getCollection("guides", ({ data }) => !data.draft && data.destination.id === destination.id);
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+const title = `${d.name} travel guide for Indians`;
+const description = `${d.name} for Indian travellers: ${visaName(d.visa.type).toLowerCase()}, ${d.visa.stay} stay, best months, flights from India and our itineraries.`;
+const jsonLd = [
+  breadcrumbs([
+    { name: "Destinations", url: absolute(href("destinations"), Astro.site) },
+    { name: d.name, url: absolute(Astro.url.pathname, Astro.site) },
+  ]),
+];
+---
+
+<Base title={title} description={description.slice(0, 160)} jsonLd={jsonLd}>
+  <Scene name={d.scene} max="72vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href={href("destinations")}>Destinations</a></li>
+            <li aria-current="page" class="visually-hidden">{d.name}</li>
+          </ol>
+        </nav>
+        <h1>{d.name}</h1>
+        <p class="lede">{d.tagline}</p>
+      </div>
+    </div>
+  </Scene>
+
+  <div class="narrow prose">
+    <h2>Entry rules for Indian passports</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><th scope="row">Entry</th><td>{d.visa.type}</td></tr>
+          <tr><th scope="row">Stay</th><td>{d.visa.stay}</td></tr>
+          <tr><th scope="row">Government fee</th><td>{d.visa.govFee}</td></tr>
+          <tr><th scope="row">Processing</th><td>{d.visa.processing}</td></tr>
+          <tr>
+            <th scope="row">Official site</th>
+            <td><a href={d.visa.officialUrl} rel="noopener">{new URL(d.visa.officialUrl).hostname}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>When to go</h2>
+    <p>
+      The best months are {d.bestMonths.map((m) => MONTHS[m - 1]).join(", ")}. Flights from India: {d.flightFromIndia}.
+      Currency: {d.currency}. Clocks: {d.timezone}.
+    </p>
+    <VisaCta destination={destination} />
+  </div>
+
+  <section class="wrap guides" aria-labelledby="guides">
+    <h2 id="guides">{d.name} guides</h2>
+    <div class="grid">
+      {guides.map((g, i) => <GuideCard guide={g} priority={i === 0} />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .guides {
+    margin-top: 64px;
+  }
+  .prose td:last-child {
+    white-space: normal;
+  }
+</style>

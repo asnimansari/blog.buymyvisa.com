@@ -1,0 +1,63 @@
+---
+/** A handwritten sign-off that writes itself in (stroke-dashoffset on the Caveat glyphs' outline). */
+interface Props {
+  text?: string;
+}
+const { text = "Happy travels!" } = Astro.props;
+---
+
+<p class="signature" aria-label={text}>
+  <svg viewBox="0 0 360 70" aria-hidden="true">
+    <text x="4" y="52">{text}</text>
+    <path d="M8 62 C90 70 200 56 300 62" class="swash"></path>
+  </svg>
+</p>
+
+<style>
+  .signature {
+    margin: 2.4em 0 0;
+    width: min(320px, 80%);
+  }
+  text {
+    font: 600 50px var(--font-hand-stack);
+    fill: transparent;
+    stroke: var(--accent);
+    stroke-width: 1.1;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: write 3.2s ease forwards 0.3s;
+  }
+  .swash {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: swash 1.2s ease forwards 3s;
+  }
+  @keyframes write {
+    70% {
+      fill: transparent;
+    }
+    to {
+      stroke-dashoffset: 0;
+      fill: var(--accent);
+    }
+  }
+  @keyframes swash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    text,
+    .swash {
+      stroke-dashoffset: 0;
+      fill: var(--accent);
+    }
+    .swash {
+      fill: none;
+    }
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+/** Points readers at the myvisa product for this destination, when we file it. */
+import type { CollectionEntry } from "astro:content";
+import { ORG_URL, visaName } from "../lib/seo";
+
+interface Props {
+  destination: CollectionEntry<"destinations">;
+}
+const d = Astro.props.destination.data;
+---
+
+{
+  d.visa.myvisaProduct === "tdac-tourist" ? (
+    <aside class="box cta ui">
+      <p class="hand note-inline">Booking a group to Thailand?</p>
+      <p>
+        Travel companies use buymyvisa to file TDACs for their travellers: enter each passport once, a reviewer
+        checks it, and we file the card as soon as Thailand opens it and keep the confirmation for you.
+      </p>
+      <a class="button" href={ORG_URL}>
+        File TDACs with buymyvisa
+      </a>
+    </aside>
+  ) : (
+    <aside class="box ui">
+      <p>
+        <strong>Applying for your {d.name} {visaName(d.visa.type)}?</strong> Use only the official site:{" "}
+        <a href={d.visa.officialUrl} rel="noopener">
+          {new URL(d.visa.officialUrl).hostname}
+        </a>
+        . Look-alike sites charge extra for the same form.
+      </p>
+    </aside>
+  )
+}
+
+<style>
+  .note-inline {
+    margin: 0;
+    font-size: 1.6rem;
+    color: var(--accent);
+  }
+  aside p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+/** Hill country: misty ridges, the Sigiriya rock, striped tea terraces and a blue train on the Nine Arch Bridge. */
+import { mesa, ridge, rolling } from "../../lib/shapes";
+
+const tea = ridge([
+  [-40, 440],
+  [240, 400],
+  [520, 430],
+  [760, 456],
+  [1040, 420],
+  [1300, 392],
+  [1640, 430],
+]);
+// the bridge: deck from x=300 to x=1300 at y=452, nine arches; hills meet it at both ends
+const arches = Array.from({ length: 9 }, (_, i) => 330 + i * 106);
+const banks = ridge([
+  [-40, 440],
+  [180, 446],
+  [300, 452],
+  [360, 600],
+  [1240, 600],
+  [1300, 452],
+  [1420, 446],
+  [1640, 438],
+]);
+const cars = [0, 1, 2, 3, 4];
+---
+
+<g class="layer layer-far">
+  <path class="far" d={rolling(3, 6, 380, 300)}></path>
+  <path class="rock" d={mesa(1080, 420, 210, 250)}></path>
+  <path class="mid" d="M1050 420 C1100 380 1170 392 1200 412 C1250 380 1320 392 1340 420 Z"></path>
+</g>
+
+<g class="layer layer-mid">
+  <defs>
+    <clipPath id="tea-clip"><path d={tea}></path></clipPath>
+  </defs>
+  <path class="mid" d={tea}></path>
+  <g clip-path="url(#tea-clip)" class="tea-rows" aria-hidden="true">
+    {
+      Array.from({ length: 16 }, (_, i) => (
+        <path d={`M-40 ${400 + i * 14} Q400 ${370 + i * 14} 800 ${410 + i * 14} T1640 ${396 + i * 14}`} />
+      ))
+    }
+  </g>
+</g>
+
+<g class="layer layer-near">
+  <g class="train">
+    {
+      cars.map((c) => (
+        <g transform={`translate(${c * 74} 0)`}>
+          <rect class="train-car" x="0" y="426" width="70" height="26" rx="5" />
+          <rect class="train-band" x="0" y="444" width="70" height="3" />
+          <rect class="light" x="8" y="432" width="54" height="7" rx="2" />
+        </g>
+      ))
+    }
+  </g>
+  <path
+    class="rock"
+    d={`M300 452 H1300 V600 H300 Z ${arches.map((x) => `M${x} 600 V510 A36 36 0 0 1 ${x + 72} 510 V600 Z`).join(" ")}`}
+    fill-rule="evenodd"></path>
+  <path class="ground" d={banks}></path>
+  <use href="#palm" class="palm" x="60" y="250" width="150" height="240"></use>
+  <use href="#palm" class="palm" x="1400" y="250" width="140" height="230" style="animation-delay:-3s"></use>
+</g>
+
+<style>
+  .tea-rows path {
+    fill: none;
+    stroke: var(--hill-near);
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: 0.5;
+  }
+</style>

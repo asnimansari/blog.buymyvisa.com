@@ -1,0 +1,65 @@
+---
+/** An Unsplash photo, optimised at build time (AVIF/WebP, responsive widths), with its credit line. */
+import { Picture } from "astro:assets";
+import { unsplashRef, unsplashSrc } from "../lib/seo";
+
+interface Props {
+  src: string;
+  alt: string;
+  photographer: string;
+  page: string;
+  caption?: string;
+  /** the page's main image: load it eagerly and first */
+  priority?: boolean;
+  sizes?: string;
+  class?: string;
+}
+
+const { src, alt, photographer, page, caption, priority = false, sizes, class: cls } = Astro.props;
+---
+
+<figure class:list={["photo", cls]}>
+  <Picture
+    src={unsplashSrc(src)}
+    alt={alt}
+    inferSize
+    widths={[480, 800, 1200, 1600]}
+    sizes={sizes ?? "(min-width: 820px) 760px, 100vw"}
+    formats={["avif", "webp"]}
+    fallbackFormat="jpg"
+    loading={priority ? "eager" : "lazy"}
+    fetchpriority={priority ? "high" : "auto"}
+    decoding="async"
+  />
+  <figcaption>
+    {caption && <span>{caption}</span>}
+    <span class="credit">
+      Photo by <a href={unsplashRef(page)} rel="noopener">{photographer}</a> on{" "}
+      <a href={unsplashRef("https://unsplash.com/")} rel="noopener">Unsplash</a>
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .photo {
+    margin: 2em 0;
+  }
+  .photo :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--tint);
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 16px;
+    margin-top: 8px;
+    font: 400 0.82rem/1.5 var(--font-sans-stack);
+    color: var(--muted);
+  }
+  .credit a {
+    color: inherit;
+  }
+</style>

@@ -1,0 +1,359 @@
+/* Illustrated scenes: inline SVG, coloured by tokens.css, animated with CSS only. */
+.scene {
+  position: relative;
+  /* the ratio keeps the whole artwork in view; narrow screens crop the sides instead */
+  height: clamp(440px, calc(var(--scene-ratio, 0.475) * 100vw), var(--scene-max, 82vh));
+  overflow: hidden;
+  isolation: isolate;
+}
+.scene > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.scene * {
+  transition:
+    fill 0.8s ease,
+    stroke 0.8s ease,
+    opacity 0.8s ease,
+    transform 1.2s ease;
+}
+
+/* ---------- sky ---------- */
+.sun {
+  transform: translate(1240px, 150px);
+}
+[data-theme="dawn"] .sun {
+  transform: translate(330px, 400px);
+}
+[data-theme="dusk"] .sun {
+  transform: translate(1180px, 420px);
+}
+[data-theme="night"] .sun {
+  transform: translate(1290px, 120px);
+}
+.sun .disc {
+  fill: var(--sun);
+}
+.sun .moon-shade {
+  fill: var(--sky-top);
+  opacity: 0;
+}
+[data-theme="night"] .sun .moon-shade {
+  opacity: 1;
+}
+[data-theme="night"] .sun .disc {
+  r: 34px;
+}
+[data-theme="night"] .sun .moon-shade {
+  r: 30px;
+}
+.stars circle {
+  fill: #fff;
+  opacity: var(--star-o);
+  animation: twinkle var(--d) ease-in-out infinite alternate;
+}
+.meteor {
+  stroke: #fff;
+  opacity: 0;
+  transform: translate(200px, 40px);
+}
+[data-theme="night"] .meteor {
+  animation: meteor 11s ease-in 3s infinite;
+}
+.clouds use {
+  fill: var(--cloud);
+  opacity: var(--cloud-o);
+  animation: drift var(--dur) linear var(--delay) infinite;
+}
+.flock {
+  animation: flock var(--dur) linear var(--delay) infinite;
+}
+.flock use {
+  stroke: var(--bird);
+  opacity: 0.8;
+}
+[data-theme="night"] .flock {
+  opacity: 0;
+}
+
+/* ---------- land ---------- */
+.far {
+  fill: var(--hill-far);
+}
+.mid {
+  fill: var(--hill-mid);
+}
+.near {
+  fill: var(--hill-near);
+}
+.ground {
+  fill: var(--ground);
+}
+.tuft {
+  fill: color-mix(in srgb, var(--hill-near) 85%, var(--rock));
+}
+.tuft-far {
+  fill: color-mix(in srgb, var(--hill-mid) 55%, var(--rock-far));
+}
+.sand {
+  fill: var(--sand);
+}
+.rock {
+  fill: var(--rock);
+}
+.rock-far {
+  fill: var(--rock-far);
+}
+.snow {
+  fill: var(--snow);
+}
+.wood {
+  fill: var(--wood);
+}
+.sail {
+  fill: var(--sail);
+}
+.paper-edge {
+  fill: var(--bg);
+}
+.sea {
+  fill: url(#water);
+}
+.shimmer {
+  stroke: var(--water-hi);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 18 26;
+  opacity: 0.55;
+  animation: shimmer 6s linear infinite;
+}
+.palm {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway 7s ease-in-out infinite alternate;
+}
+.bob {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: bob 4.5s ease-in-out infinite;
+}
+.sail-across {
+  animation: sail var(--dur, 90s) linear var(--delay, 0s) infinite;
+}
+.light {
+  fill: #ffd27a;
+  opacity: var(--glow);
+}
+.halo {
+  fill: url(#lamp);
+  opacity: var(--glow);
+}
+.plane {
+  fill: var(--ink);
+  offset-rotate: auto;
+  animation: fly 38s linear infinite;
+}
+[data-theme="night"] .plane {
+  fill: #dfe6ff;
+}
+.route-trail {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+  opacity: 0.35;
+}
+[data-theme="night"] .route-trail {
+  stroke: #dfe6ff;
+}
+
+/* aurora (Iceland, night only) */
+.aurora path {
+  fill: none;
+  stroke-width: 46;
+  stroke-linecap: round;
+  opacity: var(--aurora-o);
+  filter: blur(14px);
+  animation: aurora 9s ease-in-out infinite alternate;
+}
+/* waterfall and lighthouse */
+.fall {
+  stroke: #ffffff;
+  stroke-width: 6;
+  stroke-dasharray: 14 10;
+  opacity: 0.9;
+  animation: fall 1.2s linear infinite;
+}
+.beam {
+  fill: #fff4c2;
+  opacity: calc(var(--glow) * 0.35);
+  transform-box: view-box;
+  animation: beam 8s linear infinite;
+}
+.smoke {
+  fill: var(--cloud);
+  opacity: 0.7;
+  animation: rise 9s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.train {
+  animation: train 26s linear infinite;
+}
+.train-car {
+  fill: #2f5fa8;
+}
+.train-band {
+  fill: #e0b54a;
+}
+[data-theme="night"] .train-car {
+  fill: #23324f;
+}
+
+/* Firewatch-style parallax: far layers move with the scroll more slowly than near ones. */
+@supports (animation-timeline: scroll()) {
+  .layer {
+    animation: parallax linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+}
+.layer-far {
+  --shift: 90px;
+}
+.layer-mid {
+  --shift: 45px;
+}
+.layer-near {
+  --shift: 15px;
+}
+
+@keyframes parallax {
+  to {
+    transform: translateY(var(--shift));
+  }
+}
+@keyframes twinkle {
+  from {
+    opacity: calc(var(--star-o) * 0.25);
+  }
+  to {
+    opacity: var(--star-o);
+  }
+}
+@keyframes meteor {
+  0%,
+  86% {
+    opacity: 0;
+    transform: translate(200px, 40px);
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(620px, 180px);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(-320px);
+  }
+  to {
+    transform: translateX(1700px);
+  }
+}
+@keyframes flock {
+  from {
+    transform: translate(-80px, 0);
+  }
+  50% {
+    transform: translate(800px, -30px);
+  }
+  to {
+    transform: translate(1700px, 10px);
+  }
+}
+@keyframes shimmer {
+  to {
+    stroke-dashoffset: -88;
+  }
+}
+@keyframes sway {
+  from {
+    transform: rotate(-1.5deg);
+  }
+  to {
+    transform: rotate(1.8deg);
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(-1deg);
+  }
+}
+@keyframes sail {
+  from {
+    transform: translateX(-260px);
+  }
+  to {
+    transform: translateX(1760px);
+  }
+}
+@keyframes fly {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+@keyframes aurora {
+  from {
+    transform: translateX(-30px) scaleY(0.9);
+  }
+  to {
+    transform: translateX(40px) scaleY(1.1);
+  }
+}
+@keyframes fall {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+@keyframes beam {
+  from {
+    transform: rotate(-35deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+  to {
+    transform: rotate(-35deg);
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(0.6);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-90px) scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes train {
+  from {
+    transform: translateX(-420px);
+  }
+  to {
+    transform: translateX(1700px);
+  }
+}

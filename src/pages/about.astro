@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import Scene from "../components/scene/Scene.astro";
+import Signature from "../components/Signature.astro";
+import { ORG_URL } from "../lib/seo";
+---
+
+<Base
+  title="About these guides"
+  description="Who writes the buymyvisa travel guides, how we check visa and entry rules, and where the photos come from."
+>
+  <Scene name="home" max="56vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <h1>About these guides</h1>
+      </div>
+    </div>
+  </Scene>
+  <div class="narrow prose">
+    <p>
+      <a href={ORG_URL}>buymyvisa</a> files visas and arrival cards for travel companies and their travellers. We
+      spend our days inside government visa forms, so we write down what we learn: what each country asks of an Indian
+      passport, what a trip really costs, and how to see the best of it in a week or so.
+    </p>
+    <h2>How we check facts</h2>
+    <p>
+      Visa and entry rules are checked against each country's official site before a guide is published, and every
+      guide shows the date of that check. Prices are per person in Indian rupees for a mid-range trip in the season we
+      recommend, excluding shopping. Exchange rates move, so treat them as a guide, not a quote.
+    </p>
+    <h2>Photos and illustrations</h2>
+    <p>
+      Photos are from <a href="https://unsplash.com/?utm_source=buymyvisa&utm_medium=referral">Unsplash</a>, credited
+      under each one. The landscapes at the top of each page are drawn for this site, and the sky follows your clock:
+      dawn, day, dusk or night.
+    </p>
+    <p>Spotted something out of date? Write to <a href="mailto:visa@buymyvisa.com">visa@buymyvisa.com</a>.</p>
+    <Signature />
+  </div>
+</Base>

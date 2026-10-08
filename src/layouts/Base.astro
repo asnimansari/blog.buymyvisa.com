@@ -1,0 +1,146 @@
+---
+import { Font } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { ComponentProps } from "astro/types";
+import Seo from "../components/seo/Seo.astro";
+import { ORG_URL, href } from "../lib/seo";
+import "../styles/tokens.css";
+import "../styles/global.css";
+
+type Props = ComponentProps<typeof Seo>;
+
+const destinations = await getCollection("destinations");
+const path = Astro.url.pathname;
+const nav = [
+  { label: "Guides", url: href("guides") },
+  { label: "Destinations", url: href("destinations") },
+  { label: "About", url: href("about") },
+];
+---
+
+<!doctype html>
+<html lang="en-IN" data-theme="day">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Pick the sky from the visitor's clock (or their saved choice) before first paint.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem("theme");
+        } catch (e) {}
+        var h = new Date().getHours();
+        var auto = h >= 5 && h < 8 ? "dawn" : h >= 8 && h < 17 ? "day" : h >= 17 && h < 20 ? "dusk" : "night";
+        if (!saved && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) auto = "night";
+        document.documentElement.dataset.theme = saved || auto;
+      })();
+    </script>
+    <Font cssVariable="--font-serif" preload={[{ weight: 400, style: "normal" }]} />
+    <Font cssVariable="--font-sans" />
+    <Font cssVariable="--font-hand" />
+    <link rel="icon" type="image/svg+xml" href={`${href()}favicon.svg`} />
+    <link rel="sitemap" href={`${href()}sitemap-index.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="buymyvisa travel guides" href={`${href()}rss.xml`} />
+    <meta name="theme-color" content="#fbf8f2" />
+    <Seo {...Astro.props} />
+  </head>
+  <body>
+    <a class="skip ui" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={href()}>
+          <span class="hand">buymyvisa</span>
+          <span class="brand-sub">travel guides</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          {
+            nav.map((n) => (
+              <a href={n.url} aria-current={path.startsWith(n.url) ? "page" : undefined}>
+                {n.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <section>
+          <h2>Destinations</h2>
+          <ul>
+            {
+              destinations.map((d) => (
+                <li>
+                  <a href={href(`destinations/${d.id}`)}>{d.data.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <section>
+          <h2>buymyvisa</h2>
+          <ul>
+            <li><a href={ORG_URL}>Apply for a visa</a></li>
+            <li><a href={href("about")}>About these guides</a></li>
+            <li><a href={`${href()}rss.xml`}>RSS feed</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Sky</h2>
+          <div class="theme-picker" role="group" aria-label="Time of day">
+            {
+              ["auto", "dawn", "day", "dusk", "night"].map((t) => (
+                <button type="button" data-set-theme={t} aria-pressed="false">
+                  {t}
+                </button>
+              ))
+            }
+          </div>
+          <p>The sky follows your clock. Pick one to keep it.</p>
+        </section>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var buttons = document.querySelectorAll("[data-set-theme]");
+        function saved() {
+          try {
+            return localStorage.getItem("theme");
+          } catch (e) {
+            return null;
+          }
+        }
+        function mark() {
+          var current = saved() || "auto";
+          buttons.forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.dataset.setTheme === current));
+          });
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener("click", function () {
+            var t = b.dataset.setTheme;
+            try {
+              if (t === "auto") localStorage.removeItem("theme");
+              else localStorage.setItem("theme", t);
+            } catch (e) {}
+            if (t === "auto") {
+              var h = new Date().getHours();
+              t = h >= 5 && h < 8 ? "dawn" : h >= 8 && h < 17 ? "day" : h >= 17 && h < 20 ? "dusk" : "night";
+            }
+            root.dataset.theme = t;
+            mark();
+          });
+        });
+        mark();
+      })();
+    </script>
+  </body>
+</html>

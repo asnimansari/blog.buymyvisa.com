@@ -1,0 +1,19 @@
+---
+/** FAQ as native <details>; the FAQPage JSON-LD is emitted by the page from the same data. */
+interface Props {
+  faq: { q: string; a: string }[];
+}
+const { faq } = Astro.props;
+---
+
+<section class="faq" aria-labelledby="faq">
+  <h2 id="faq">Frequently asked questions</h2>
+  {
+    faq.map((f) => (
+      <details>
+        <summary>{f.q}</summary>
+        <p>{f.a}</p>
+      </details>
+    ))
+  }
+</section>

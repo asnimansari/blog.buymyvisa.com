@@ -1,0 +1,140 @@
+/*
+ * Design tokens. The time of day (data-theme on <html>: dawn | day | dusk | night) recolours the sky,
+ * the hills and the page; the inline script in Base.astro picks it from the visitor's clock.
+ */
+:root {
+  --font-serif-stack: var(--font-serif), Georgia, serif;
+  --font-sans-stack: var(--font-sans), system-ui, sans-serif;
+  --font-hand-stack: var(--font-hand), cursive;
+
+  --measure: 68ch;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 14px;
+  --radius-sm: 8px;
+
+  /* day: the default when JS is off */
+  --sky-top: #6fb3e8;
+  --sky-mid: #a9d6f2;
+  --sky-bot: #e9f5f6;
+  --sun: #fff6d6;
+  --sun-glow: #fff3b0;
+  --sun-x: 78%;
+  --sun-y: 26%;
+  --cloud: #ffffff;
+  --cloud-o: 0.95;
+  --hill-far: #a7c6cc;
+  --hill-mid: #79ab8f;
+  --hill-near: #5b925d;
+  --ground: #4c7f4f;
+  --sand: #f1dcae;
+  --rock: #8fa79b;
+  --rock-far: #b9cfd0;
+  --water: #4fa3c7;
+  --water-hi: #bfe6f2;
+  --snow: #ffffff;
+  --wood: #6b4a2e;
+  --sail: #c8402f;
+  --ink: #17202b;
+  --bird: #3a4656;
+  --star-o: 0;
+  --glow: 0;
+  --aurora-o: 0;
+
+  --bg: #fbf8f2;
+  --paper: #ffffff;
+  --text: #1d2733;
+  --muted: #5b6673;
+  --rule: #e6dfd2;
+  --link: #1560c4;
+  --link-rule: #1560c447;
+  --accent: #e2673f;
+  --accent-ink: #ffffff;
+  --tint: #f3ede2;
+  --shadow: 0 1px 2px #1d27330f, 0 8px 24px #1d27330d;
+  color-scheme: light;
+}
+
+[data-theme="dawn"] {
+  --sky-top: #7b8fc9;
+  --sky-mid: #f2b8b5;
+  --sky-bot: #ffe2c2;
+  --sun: #ffe9c7;
+  --sun-glow: #ffc49a;
+  --sun-x: 22%;
+  --sun-y: 62%;
+  --cloud: #fff0e8;
+  --hill-far: #c4afc2;
+  --hill-mid: #8ca58e;
+  --hill-near: #5c895a;
+  --ground: #496a48;
+  --sand: #f3cdb2;
+  --rock: #a3929f;
+  --rock-far: #d3bfcf;
+  --water: #9ab5d6;
+  --water-hi: #ffe2d6;
+  --bird: #3a2f3a;
+}
+
+[data-theme="dusk"] {
+  --sky-top: #3e4a8c;
+  --sky-mid: #d7748a;
+  --sky-bot: #ffb37a;
+  --sun: #ffd38a;
+  --sun-glow: #ff8e5c;
+  --sun-x: 70%;
+  --sun-y: 70%;
+  --cloud: #f8c7b6;
+  --hill-far: #9a7f98;
+  --hill-mid: #6c7e6a;
+  --hill-near: #4b5f4c;
+  --ground: #3b4d3d;
+  --sand: #d9a27e;
+  --rock: #7d6b80;
+  --rock-far: #b593ac;
+  --water: #7a6f9c;
+  --water-hi: #ffc29a;
+  --bird: #2b2232;
+  --glow: 0.6;
+}
+
+[data-theme="night"] {
+  --sky-top: #070d24;
+  --sky-mid: #18224a;
+  --sky-bot: #2c3866;
+  --sun: #eef2ff;
+  --sun-glow: #9cb4ff;
+  --sun-x: 80%;
+  --sun-y: 22%;
+  --cloud: #3b4877;
+  --cloud-o: 0.55;
+  --hill-far: #25345a;
+  --hill-mid: #1c2c46;
+  --hill-near: #13233a;
+  --ground: #0f1c2f;
+  --sand: #2a3150;
+  --rock: #26355a;
+  --rock-far: #31416b;
+  --water: #1a2a4f;
+  --water-hi: #6f86c9;
+  --snow: #c9d4f0;
+  --wood: #2c2a3a;
+  --sail: #6b3346;
+  --ink: #0a1020;
+  --bird: #3a4656;
+  --star-o: 1;
+  --glow: 1;
+  --aurora-o: 0.85;
+
+  --bg: #0d1428;
+  --paper: #141d36;
+  --text: #e7ecf8;
+  --muted: #a3aec6;
+  --rule: #26314f;
+  --link: #9cc4ff;
+  --link-rule: #9cc4ff4d;
+  --accent: #ff8f6b;
+  --accent-ink: #1a1020;
+  --tint: #18223f;
+  --shadow: 0 1px 2px #0006, 0 8px 24px #0005;
+  color-scheme: dark;
+}

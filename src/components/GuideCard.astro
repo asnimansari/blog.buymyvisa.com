@@ -1,0 +1,35 @@
+---
+import { Picture } from "astro:assets";
+import { getEntry, type CollectionEntry } from "astro:content";
+import { href, inr, unsplashSrc } from "../lib/seo";
+
+interface Props {
+  guide: CollectionEntry<"guides">;
+  priority?: boolean;
+}
+const { guide, priority = false } = Astro.props;
+const g = guide.data;
+const destination = (await getEntry(g.destination))!;
+---
+
+<article class="card">
+  <Picture
+    src={unsplashSrc(g.hero.src, 1000)}
+    alt={g.hero.alt}
+    inferSize
+    widths={[400, 640, 900]}
+    sizes="(min-width: 1120px) 360px, (min-width: 700px) 45vw, 100vw"
+    formats={["avif", "webp"]}
+    fallbackFormat="jpg"
+    loading={priority ? "eager" : "lazy"}
+  />
+  <div class="card-body">
+    <div class="meta">
+      <span>{destination.data.name}</span>
+      <span>{g.tripDays} days</span>
+      <span>from {inr(g.budgetInr.low)}</span>
+    </div>
+    <h3><a href={href(`guides/${guide.id}`)}>{g.title}</a></h3>
+    <p>{g.description}</p>
+  </div>
+</article>

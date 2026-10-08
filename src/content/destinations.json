@@ -1,0 +1,79 @@
+[
+  {
+    "id": "thailand",
+    "name": "Thailand",
+    "iso3": "THA",
+    "scene": "thailand",
+    "tagline": "Limestone karsts, long-tail boats and night markets, four hours from Delhi.",
+    "capital": "Bangkok",
+    "currency": "Thai baht (THB), about ₹2.6",
+    "timezone": "IST + 1:30",
+    "flightFromIndia": "4 h from Delhi or Mumbai, 3 h 30 m from Kolkata",
+    "bestMonths": [11, 12, 1, 2, 3],
+    "visa": {
+      "type": "Visa-free entry + Thailand Digital Arrival Card (TDAC)",
+      "stay": "30 days",
+      "govFee": "Free",
+      "processing": "TDAC opens 3 days before arrival",
+      "officialUrl": "https://tdac.immigration.go.th/",
+      "myvisaProduct": "tdac-tourist"
+    }
+  },
+  {
+    "id": "sri-lanka",
+    "name": "Sri Lanka",
+    "iso3": "LKA",
+    "scene": "sri-lanka",
+    "tagline": "Rock fortresses, tea hills and the slowest, prettiest train ride in Asia.",
+    "capital": "Colombo",
+    "currency": "Sri Lankan rupee (LKR), about ₹0.29",
+    "timezone": "Same as IST",
+    "flightFromIndia": "1 h 15 m from Chennai, 1 h from Kochi or Thiruvananthapuram",
+    "bestMonths": [12, 1, 2, 3, 4],
+    "visa": {
+      "type": "Electronic Travel Authorization (ETA)",
+      "stay": "30 days, double entry",
+      "govFee": "Free for Indian tourists",
+      "processing": "Usually within 1–3 days",
+      "officialUrl": "https://www.eta.gov.lk/"
+    }
+  },
+  {
+    "id": "vietnam",
+    "name": "Vietnam",
+    "iso3": "VNM",
+    "scene": "vietnam",
+    "tagline": "Karst bays, lantern towns and the best ₹150 bowl of noodles you will ever eat.",
+    "capital": "Hanoi",
+    "currency": "Vietnamese dong (VND), ₹1 ≈ 300 VND",
+    "timezone": "IST + 1:30",
+    "flightFromIndia": "4 h direct from Delhi or Mumbai to Hanoi or Ho Chi Minh City",
+    "bestMonths": [2, 3, 4, 10, 11],
+    "visa": {
+      "type": "e-Visa",
+      "stay": "Up to 90 days",
+      "govFee": "US$25 single entry, US$50 multiple entry",
+      "processing": "3–5 working days",
+      "officialUrl": "https://evisa.gov.vn/"
+    }
+  },
+  {
+    "id": "iceland",
+    "name": "Iceland",
+    "iso3": "ISL",
+    "scene": "iceland",
+    "tagline": "Waterfalls, black-sand beaches and glaciers, on one road around an island.",
+    "capital": "Reykjavík",
+    "currency": "Icelandic króna (ISK), about ₹0.7",
+    "timezone": "IST − 5:30",
+    "flightFromIndia": "No direct flights: about 14–18 h via a European hub",
+    "bestMonths": [6, 7, 8, 9],
+    "visa": {
+      "type": "Schengen short-stay visa (type C) via VFS Global",
+      "stay": "Up to 90 days in any 180",
+      "govFee": "€90 visa fee + VFS service charge",
+      "processing": "About 15 calendar days",
+      "officialUrl": "https://visa.vfsglobal.com/ind/en/isl"
+    }
+  }
+]

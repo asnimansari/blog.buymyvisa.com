@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+import Scene from "../components/scene/Scene.astro";
+import { href } from "../lib/seo";
+---
+
+<Base title="Page not found" noindex>
+  <Scene name="iceland" max="78vh">
+    <div class="hero-copy">
+      <div class="wrap">
+        <p class="eyebrow">404</p>
+        <h1>This road doesn't go anywhere.</h1>
+        <p class="lede">
+          The page has moved or never existed. Try <a href={href("guides")}>all guides</a> or
+          <a href={href()}>the home page</a>.
+        </p>
+      </div>
+    </div>
+  </Scene>
+</Base>

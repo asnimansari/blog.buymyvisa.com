@@ -1,0 +1,39 @@
+---
+/**
+ * An illustrated, time-of-day-aware landscape. One per page (the SVG ids are not namespaced).
+ * The slot holds the hero copy, laid over the sky.
+ */
+import Sky from "./Sky.astro";
+import Home from "./Home.astro";
+import Thailand from "./Thailand.astro";
+import SriLanka from "./SriLanka.astro";
+import Vietnam from "./Vietnam.astro";
+import Iceland from "./Iceland.astro";
+import "../../styles/scene.css";
+
+export type SceneName = "home" | "thailand" | "sri-lanka" | "vietnam" | "iceland";
+
+interface Props {
+  name: SceneName;
+  /** the tallest the scene may get, e.g. "70vh"; below that it keeps the artwork's shape */
+  max?: string;
+  /** extra sky (in artwork units) above the 600-unit landscape, so headlines sit in open sky */
+  sky?: number;
+}
+
+const { name, max = "82vh", sky = 160 } = Astro.props;
+const ratio = ((600 + sky) / 1600).toFixed(4);
+const Layers = { home: Home, thailand: Thailand, "sri-lanka": SriLanka, vietnam: Vietnam, iceland: Iceland }[name];
+---
+
+<div class:list={["scene", `scene--${name}`]} style={`--scene-max:${max}; --scene-ratio:${ratio}`}>
+  <svg viewBox={`0 ${-sky} 1600 ${600 + sky}`} preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <Sky sky={sky} />
+    <Layers />
+    <path
+      class="paper-edge"
+      d="M0 600 L0 584 C200 572 420 590 640 582 C860 574 1080 592 1300 580 C1420 574 1520 584 1600 578 L1600 600 Z"
+    ></path>
+  </svg>
+  <slot />
+</div>
