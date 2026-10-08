@@ -113,5 +113,24 @@
       "processing": "Apply online before travel, or at the point of entry (may involve a wait)",
       "officialUrl": "https://www.bhutan.travel/faqs"
     }
+  },
+  {
+    "id": "malaysia",
+    "name": "Malaysia",
+    "iso3": "MYS",
+    "scene": "thailand",
+    "tagline": "Island beaches, rainforest and a skyline of twin towers, visa-free for Indians until the end of 2026.",
+    "capital": "Kuala Lumpur",
+    "currency": "Malaysian ringgit (MYR), roughly ₹20–22",
+    "timezone": "IST + 2:30",
+    "flightFromIndia": "About 4 h from Chennai, 5 h 30 m from Delhi or Mumbai",
+    "bestMonths": [12, 1, 2, 3],
+    "visa": {
+      "type": "Visa waiver for Indian passport holders until 31 Dec 2026, plus the Malaysia Digital Arrival Card (MDAC)",
+      "stay": "Up to 30 days",
+      "govFee": "No visa fee under the waiver; the MDAC is free",
+      "processing": "No application; submit the MDAC 3 days before arrival",
+      "officialUrl": "https://www.kln.gov.my/web/ind_new-delhi/requirement_foreigner"
+    }
   }
 ]
