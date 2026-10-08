@@ -94,5 +94,24 @@
       "processing": "Ask the agent; SG Arrival Card within 3 days before arrival",
       "officialUrl": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements"
     }
+  },
+  {
+    "id": "bhutan",
+    "name": "Bhutan",
+    "iso3": "BTN",
+    "scene": "iceland",
+    "tagline": "A Himalayan kingdom of dzongs and cliffside monasteries that Indians can enter without a visa.",
+    "capital": "Thimphu",
+    "currency": "Ngultrum (BTN), pegged 1:1 to the rupee",
+    "timezone": "IST + 0:30",
+    "flightFromIndia": "About 45 min to 2 h from Bagdogra, Kolkata, Guwahati or Delhi to Paro",
+    "bestMonths": [3, 4, 5, 9, 10, 11],
+    "visa": {
+      "type": "No visa; entry permit with Indian passport or voter ID, plus the Sustainable Development Fee",
+      "stay": "Set by the permit (the official FAQ gives up to 90 days for visas)",
+      "govFee": "SDF Nu 1,200 (₹1,200) per adult per night; ₹600 for ages 6–11; free under 6",
+      "processing": "Apply online before travel, or at the point of entry (may involve a wait)",
+      "officialUrl": "https://www.bhutan.travel/faqs"
+    }
   }
 ]
