@@ -189,5 +189,24 @@
       "processing": "Usually a decision within 3 weeks; apply no earlier than 3 months before travel",
       "officialUrl": "https://www.gov.uk/standard-visitor"
     }
+  },
+  {
+    "id": "hong-kong",
+    "name": "Hong Kong",
+    "iso3": "HKG",
+    "scene": "vietnam",
+    "tagline": "A skyscraper harbour, island hikes and dim sum, about six hours from Delhi or Mumbai.",
+    "capital": "Hong Kong",
+    "currency": "Hong Kong dollar (HKD), roughly ₹11",
+    "timezone": "IST + 2:30",
+    "flightFromIndia": "About 5 h 30 m non-stop from Delhi, 6 h from Mumbai",
+    "bestMonths": [10, 11, 12, 3],
+    "visa": {
+      "type": "Visa-free visit after a free online Pre-arrival Registration (PAR)",
+      "stay": "Up to 14 days per visit",
+      "govFee": "Free",
+      "processing": "Instant online; the registration lasts 6 months",
+      "officialUrl": "https://www.immd.gov.hk/eng/services/visas/pre-arrival_registration_for_indian_nationals.html"
+    }
   }
 ]
