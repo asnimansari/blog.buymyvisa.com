@@ -227,5 +227,24 @@
       "processing": "None; documents are checked at the airline counter and at immigration",
       "officialUrl": "https://indembkathmandu.gov.in/valid-travel-documents"
     }
+  },
+  {
+    "id": "turkey",
+    "name": "Turkey",
+    "iso3": "TUR",
+    "scene": "vietnam",
+    "tagline": "Istanbul's domes and bazaars, then balloons over the fairy chimneys of Cappadocia.",
+    "capital": "Ankara",
+    "currency": "Turkish lira (TRY); check the day's rate",
+    "timezone": "IST - 2:30",
+    "flightFromIndia": "About 6 h non-stop from Delhi or Mumbai to Istanbul",
+    "bestMonths": [4, 5, 9, 10],
+    "visa": {
+      "type": "Visa needed; e-Visa only with a valid Schengen, US, UK or Ireland visa or residence permit, otherwise a sticker visa",
+      "stay": "e-Visa: single entry, one month (per the Turkish foreign ministry)",
+      "govFee": "Not stated on the ministry or embassy pages we could read; shown on evisa.gov.tr",
+      "processing": "e-Visa is online; the sticker visa goes through the embassy or consulate",
+      "officialUrl": "https://www.evisa.gov.tr/en/"
+    }
   }
 ]
