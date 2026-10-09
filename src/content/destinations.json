@@ -208,5 +208,24 @@
       "processing": "Instant online; the registration lasts 6 months",
       "officialUrl": "https://www.immd.gov.hk/eng/services/visas/pre-arrival_registration_for_indian_nationals.html"
     }
+  },
+  {
+    "id": "nepal",
+    "name": "Nepal",
+    "iso3": "NPL",
+    "scene": "iceland",
+    "tagline": "Temples in Kathmandu and lakeside Himalayan views in Pokhara, a short flight from Delhi with no visa to apply for.",
+    "capital": "Kathmandu",
+    "currency": "Nepalese rupee (NPR), pegged at ₹1 = NPR 1.6",
+    "timezone": "IST + 0:15",
+    "flightFromIndia": "About 1 h 45 m non-stop from Delhi; also direct from Mumbai, Kolkata and other cities",
+    "bestMonths": [3, 4, 10, 11],
+    "visa": {
+      "type": "No visa for Indian citizens; by air you need a valid passport or an original Voter ID",
+      "stay": "Not stated on the Indian Embassy page; we could not reach Nepal's immigration site",
+      "govFee": "None",
+      "processing": "None; documents are checked at the airline counter and at immigration",
+      "officialUrl": "https://indembkathmandu.gov.in/valid-travel-documents"
+    }
   }
 ]
