@@ -48,7 +48,7 @@ Canonical: `src/content.config.ts`. Both collections are build-time only (no API
 title: "Thailand in 6 days from India: Bangkok, Krabi & Phi Phi"   # ≤ 70 chars
 description: "…"                 # 70–160 chars: the meta description and the hero lede
 destination: thailand            # reference('destinations')
-publishedAt: 2026-10-08
+publishedAt: 2026-10-08T12:00:00Z   # UTC timestamp, so guides published the same day keep their publish order
 updatedAt: 2026-11-02            # optional; becomes dateModified
 factsCheckedAt: 2026-10-08       # last check of the entry rules against official sources; shown in the facts box
 hero:                            # an Unsplash photo
