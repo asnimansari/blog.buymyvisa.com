@@ -284,5 +284,24 @@
       "processing": "The page says 80% of applications are decided within 2 weeks",
       "officialUrl": "https://www.immigration.govt.nz/new-zealand-visas/visas/visa/visitor-visa"
     }
+  },
+  {
+    "id": "japan",
+    "name": "Japan",
+    "iso3": "JPN",
+    "scene": "vietnam",
+    "tagline": "Bullet trains, temples and cherry blossom between Tokyo, Kyoto and Osaka, on a visa you file in advance.",
+    "capital": "Tokyo",
+    "currency": "Japanese yen (JPY), roughly ₹0.60 per yen; check the day's rate",
+    "timezone": "IST + 3:30",
+    "flightFromIndia": "Roughly 8 to 9 h non-stop from Delhi to Tokyo; most other Indian cities connect via Southeast or East Asia",
+    "bestMonths": [3, 4, 10, 11],
+    "visa": {
+      "type": "Temporary visitor (tourist) visa, applied for in advance through a Japan Visa Application Centre run by VFS Global",
+      "stay": "Up to 90 days under the tourist visa; the consulate sets the length granted",
+      "govFee": "INR 500 for single or multiple entry (effective 1 April 2026), plus a VFS service charge of INR 800",
+      "processing": "Minimum 3 working days after submission, an indicative figure; you can apply up to 89 days before travel",
+      "officialUrl": "https://www.vfsglobal.com/one-pager/japan/india/Chennai/index.html"
+    }
   }
 ]
