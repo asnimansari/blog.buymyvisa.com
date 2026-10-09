@@ -246,5 +246,24 @@
       "processing": "e-Visa is online; the sticker visa goes through the embassy or consulate",
       "officialUrl": "https://www.evisa.gov.tr/en/"
     }
+  },
+  {
+    "id": "indonesia",
+    "name": "Indonesia",
+    "iso3": "IDN",
+    "scene": "thailand",
+    "tagline": "Bali's rice terraces, temples and cliff-top beaches, with a visa on arrival for Indian passport holders.",
+    "capital": "Jakarta",
+    "currency": "Indonesian rupiah (IDR), roughly ₹5.3 per 1,000 rupiah",
+    "timezone": "IST + 2:30 (Bali)",
+    "flightFromIndia": "About 6 h non-stop from Mumbai or Bengaluru to Bali; most other cities connect via Singapore or Kuala Lumpur",
+    "bestMonths": [5, 6, 7, 8, 9],
+    "visa": {
+      "type": "Visa on arrival for Indian passport holders (India is on the immigration list), plus the free All Indonesia arrival card",
+      "stay": "30 days, extendable once by 30 days",
+      "govFee": "IDR 500,000 (extension also IDR 500,000); a rise to IDR 750,000 online / IDR 1,000,000 on arrival was proposed in August 2026 but we found no start date",
+      "processing": "Granted at the airport on arrival; an e-VOA can be bought online in advance at evisa.imigrasi.go.id",
+      "officialUrl": "https://evisa.imigrasi.go.id/"
+    }
   }
 ]
