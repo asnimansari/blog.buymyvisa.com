@@ -151,5 +151,24 @@
       "processing": "No application; submit the Traveller Declaration online, up to 96 hours before arrival",
       "officialUrl": "https://immigration.gov.mv/visa/tourist-visa"
     }
+  },
+  {
+    "id": "georgia",
+    "name": "Georgia",
+    "iso3": "GEO",
+    "scene": "iceland",
+    "tagline": "Caucasus peaks, wine villages and a walkable old Tbilisi, reached with a short online e-visa.",
+    "capital": "Tbilisi",
+    "currency": "Georgian lari (GEL), roughly ₹30–33",
+    "timezone": "IST − 1:30",
+    "flightFromIndia": "Usually one stop; about 7 to 10 h in total from Delhi or Mumbai",
+    "bestMonths": [5, 6, 9, 10],
+    "visa": {
+      "type": "e-Visa for Indian passport holders, applied for online",
+      "stay": "Up to 30 days for a single-entry short-term visa under Georgian law; you request the days on the application",
+      "govFee": "US$20 plus a 2% service fee; the application page also lists a US$15 identity-verification fee",
+      "processing": "A decision takes at least 5 working days according to the portal FAQ",
+      "officialUrl": "https://www.evisa.gov.ge/"
+    }
   }
 ]
