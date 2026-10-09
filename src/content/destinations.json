@@ -265,5 +265,24 @@
       "processing": "Granted at the airport on arrival; an e-VOA can be bought online in advance at evisa.imigrasi.go.id",
       "officialUrl": "https://evisa.imigrasi.go.id/"
     }
+  },
+  {
+    "id": "new-zealand",
+    "name": "New Zealand",
+    "iso3": "NZL",
+    "scene": "iceland",
+    "tagline": "Alpine lakes, fiords and empty roads on the South Island, reached with a visitor visa applied for online.",
+    "capital": "Wellington",
+    "currency": "New Zealand dollar (NZD); check the day's rate",
+    "timezone": "IST + 6:30 (IST + 7:30 in NZ daylight time, late September to early April)",
+    "flightFromIndia": "No non-stop from India; usually one stop, for example via Singapore, Kuala Lumpur or Sydney",
+    "bestMonths": [12, 1, 2, 3],
+    "visa": {
+      "type": "Visitor visa, applied for online before travel; Indian applicants have their own checklist",
+      "stay": "Up to 6 or 9 months depending on the visa; the visitor visa page says a maximum of 9 months in an 18-month period",
+      "govFee": "From NZD 441 per the visitor visa page, which doesn't say whether the visitor levy is included; any application centre charge is separate",
+      "processing": "The page says 80% of applications are decided within 2 weeks",
+      "officialUrl": "https://www.immigration.govt.nz/new-zealand-visas/visas/visa/visitor-visa"
+    }
   }
 ]
