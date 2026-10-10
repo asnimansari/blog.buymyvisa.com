@@ -341,5 +341,24 @@
       "processing": "Usually 15 calendar days; apply at most 180 days and at least 15 days before travel",
       "officialUrl": "https://www.vfsglobal.com/one-pager/switzerland/india/english/"
     }
+  },
+  {
+    "id": "canada",
+    "name": "Canada",
+    "iso3": "CAN",
+    "scene": "iceland",
+    "tagline": "Turquoise lakes, glaciers and the Rockies' scenic highways, reached with a visitor visa applied for online.",
+    "capital": "Ottawa",
+    "currency": "Canadian dollar (CAD), roughly ₹63; check the day's rate",
+    "timezone": "Alberta: IST − 11:30 (IST − 12:30 in winter); Ontario: IST − 9:30 (IST − 10:30 in winter)",
+    "flightFromIndia": "No non-stop to Calgary; one stop from Delhi or Mumbai, about 20 to 24 hours door to door",
+    "bestMonths": [6, 7, 8, 9],
+    "visa": {
+      "type": "Visitor visa (temporary resident visa) applied for online through the IRCC portal, with biometrics; Indian citizens are not eligible for the eTA",
+      "stay": "The border officer sets the stay on arrival; the visa itself can be valid up to 10 years or until your passport or biometrics expire",
+      "govFee": "CAD 100 visa fee plus CAD 85 biometrics fee per person (about ₹11,700 in total)",
+      "processing": "Varies by month; IRCC publishes it in a processing-times tool for India, so apply at least 3 months before travel",
+      "officialUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/apply-visitor-visa.html"
+    }
   }
 ]
