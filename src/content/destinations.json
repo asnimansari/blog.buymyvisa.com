@@ -303,5 +303,24 @@
       "processing": "Minimum 3 working days after submission, an indicative figure; you can apply up to 89 days before travel",
       "officialUrl": "https://www.vfsglobal.com/one-pager/japan/india/Chennai/index.html"
     }
+  },
+  {
+    "id": "uae",
+    "name": "United Arab Emirates",
+    "iso3": "ARE",
+    "scene": "thailand",
+    "tagline": "Skyscrapers, desert dunes and a white marble mosque, three and a half hours from Mumbai or Delhi.",
+    "capital": "Abu Dhabi",
+    "currency": "UAE dirham (AED), roughly ₹24; check the day's rate",
+    "timezone": "IST − 1:30",
+    "flightFromIndia": "About 3 h 15 m from Mumbai, 3 h 30 m from Delhi, 3 h 30 m to 4 h from Kerala and the south",
+    "bestMonths": [11, 12, 1, 2, 3],
+    "visa": {
+      "type": "Visa required in advance (visit visa via GDRFA Dubai, ICP, an airline or an agent); visa on arrival only for Indians holding a US, UK or EU visa or permit",
+      "stay": "30 or 60 days on a single-entry tourist visa; 14 days on the visa on arrival, extendable once",
+      "govFee": "AED 200 (30 days) or AED 300 (60 days) plus 5% VAT on the GDRFA Dubai single-entry page; agents and airlines add their own charges",
+      "processing": "GDRFA Dubai lists 48 hours as the expected completion time",
+      "officialUrl": "https://www.gdrfad.gov.ae/en/services/f9e586fe-0642-11ec-0320-0050569629e8"
+    }
   }
 ]
