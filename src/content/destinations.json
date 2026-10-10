@@ -379,5 +379,24 @@
       "processing": "No application; register on eTravel at least 72 hours before arrival",
       "officialUrl": "https://tokyo.philembassy.net/consular-section/services/visa/visa-free-entry-for-temporary-visits/"
     }
+  },
+  {
+    "id": "egypt",
+    "name": "Egypt",
+    "iso3": "EGY",
+    "scene": "vietnam",
+    "tagline": "Pyramids at dawn, temples on the Nile and a cruise between Luxor and Aswan.",
+    "capital": "Cairo",
+    "currency": "Egyptian pound (EGP); check the day's rate",
+    "timezone": "IST - 2:30 (IST - 3:30 during Egyptian summer time)",
+    "flightFromIndia": "About 5 h 30 m non-stop from Mumbai, otherwise 1 stop via the Gulf or Istanbul",
+    "bestMonths": [10, 11, 2, 3, 4],
+    "visa": {
+      "type": "e-Visa (tourist), applied for on the Egypt e-Visa Portal",
+      "stay": "Not stated on the portal pages we could read; check your issued visa",
+      "govFee": "US$30 single entry, US$65 multiple entry (portal FAQ)",
+      "processing": "The portal asks you to apply at least 7 days before departure",
+      "officialUrl": "https://visa2egypt.gov.eg/"
+    }
   }
 ]
