@@ -360,5 +360,24 @@
       "processing": "Varies by month; IRCC publishes it in a processing-times tool for India, so apply at least 3 months before travel",
       "officialUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/apply-visitor-visa.html"
     }
+  },
+  {
+    "id": "philippines",
+    "name": "Philippines",
+    "iso3": "PHL",
+    "scene": "thailand",
+    "tagline": "Limestone lagoons, island-hopping boats and white-sand coves, visa-free for Indians for up to 14 days.",
+    "capital": "Manila",
+    "currency": "Philippine peso (PHP), roughly ₹1.5; check the day's rate",
+    "timezone": "IST + 2:30",
+    "flightFromIndia": "About 6 h 45 m to 7 h 15 m non-stop from Delhi on Air India; one-stop routes from other cities",
+    "bestMonths": [12, 1, 2, 3, 4],
+    "visa": {
+      "type": "Visa-free entry for Indian passport holders (tourism), plus the free online eTravel registration",
+      "stay": "14 days, non-extendable; 30 days with a valid US, Japanese, Australian, Canadian, Schengen, Singapore or UK visa or residence permit",
+      "govFee": "No visa fee; eTravel is free",
+      "processing": "No application; register on eTravel at least 72 hours before arrival",
+      "officialUrl": "https://tokyo.philembassy.net/consular-section/services/visa/visa-free-entry-for-temporary-visits/"
+    }
   }
 ]
