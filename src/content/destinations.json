@@ -322,5 +322,24 @@
       "processing": "GDRFA Dubai lists 48 hours as the expected completion time",
       "officialUrl": "https://www.gdrfad.gov.ae/en/services/f9e586fe-0642-11ec-0320-0050569629e8"
     }
+  },
+  {
+    "id": "switzerland",
+    "name": "Switzerland",
+    "iso3": "CHE",
+    "scene": "iceland",
+    "tagline": "Alpine peaks, lake towns and mountain railways, reached with a Schengen visa applied for through VFS.",
+    "capital": "Bern",
+    "currency": "Swiss franc (CHF), roughly ₹115–120; check the day's rate",
+    "timezone": "IST − 4:30 (IST − 3:30 in summer time)",
+    "flightFromIndia": "About 8 to 9 h non-stop from Delhi or Mumbai to Zurich; one-stop routes from other cities",
+    "bestMonths": [6, 7, 8, 9],
+    "visa": {
+      "type": "Schengen short-stay visa (type C), lodged through VFS Global and decided by the Swiss Embassy in New Delhi",
+      "stay": "Up to 90 days in any 180",
+      "govFee": "€90 for adults (€45 for ages 6–12, free under 6) plus a VFS service charge of INR 2,690",
+      "processing": "Usually 15 calendar days; apply at most 180 days and at least 15 days before travel",
+      "officialUrl": "https://www.vfsglobal.com/one-pager/switzerland/india/english/"
+    }
   }
 ]
