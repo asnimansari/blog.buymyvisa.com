@@ -417,5 +417,24 @@
       "processing": "Decisions on C visas are generally reached within 15 calendar days; apply no earlier than six months before travel",
       "officialUrl": "https://ambnewdelhi.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/"
     }
+  },
+  {
+    "id": "taiwan",
+    "name": "Taiwan",
+    "iso3": "TWN",
+    "scene": "vietnam",
+    "tagline": "Night markets, a marble gorge and tea-covered hills, on an island you can cross by train in a few hours.",
+    "capital": "Taipei",
+    "currency": "New Taiwan dollar (TWD), roughly ₹2.8",
+    "timezone": "IST + 2:30",
+    "flightFromIndia": "Usually one stop via Bangkok, Singapore, Hong Kong or Kuala Lumpur: about 9–12 h in total",
+    "bestMonths": [10, 11, 12, 3, 4],
+    "visa": {
+      "type": "Online Travel Authorization Certificate (TAC) if you hold a qualifying visa or residence document; otherwise a visitor visa from the Taipei Economic and Cultural Center",
+      "stay": "Up to 30 days under the TAC, per the Bureau of Consular Affairs",
+      "govFee": "Not stated on the official pages we could load; check the TAC portal and the TECC",
+      "processing": "Apply online before departure; the official pages do not state a processing time",
+      "officialUrl": "https://niaspeedy.immigration.gov.tw/nia_southeast/"
+    }
   }
 ]
