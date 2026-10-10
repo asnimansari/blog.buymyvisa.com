@@ -455,5 +455,24 @@
       "processing": "Not stated in the text we could load; apply well before you book non-refundable flights",
       "officialUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600"
     }
+  },
+  {
+    "id": "greece",
+    "name": "Greece",
+    "iso3": "GRC",
+    "scene": "thailand",
+    "tagline": "Whitewashed island towns, caldera sunsets and the Acropolis, linked by ferries and short flights.",
+    "capital": "Athens",
+    "currency": "Euro (EUR), roughly ₹95–105; check the day's rate",
+    "timezone": "IST − 2:30 (IST − 3:30 in winter)",
+    "flightFromIndia": "One stop via Istanbul, Doha, Dubai or Abu Dhabi: about 10–13 h; some non-stop Delhi–Athens flights run in season",
+    "bestMonths": [5, 6, 9, 10],
+    "visa": {
+      "type": "Schengen short-stay visa (type C), lodged through VFS Global and decided by the Embassy of Greece in New Delhi",
+      "stay": "Up to 90 days in any 180",
+      "govFee": "€90 for adults (€45 for ages 6–11, free under 6) plus a VFS service charge",
+      "processing": "Up to 15 working days from an admissible application, extendable to 45 days in some cases; apply no earlier than six months before travel",
+      "officialUrl": "https://www.mfa.gr/missionsabroad/en/india-en/visas/processing-time-of-applications-for-schengen-visa.html"
+    }
   }
 ]
