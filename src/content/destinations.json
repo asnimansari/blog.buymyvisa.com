@@ -398,5 +398,24 @@
       "processing": "The portal asks you to apply at least 7 days before departure",
       "officialUrl": "https://visa2egypt.gov.eg/"
     }
+  },
+  {
+    "id": "italy",
+    "name": "Italy",
+    "iso3": "ITA",
+    "scene": "sri-lanka",
+    "tagline": "Ancient Rome, Renaissance Florence and the canals of Venice, linked by fast trains.",
+    "capital": "Rome",
+    "currency": "Euro (EUR), roughly ₹95–105; check the day's rate",
+    "timezone": "IST − 3:30 (IST − 4:30 in winter)",
+    "flightFromIndia": "About 9 h non-stop from Delhi to Rome; one-stop routes from other cities",
+    "bestMonths": [4, 5, 9, 10],
+    "visa": {
+      "type": "Schengen short-stay visa (type C), lodged through VFS Global and decided by the Italian Embassy in New Delhi or a consulate",
+      "stay": "Up to 90 days in any 180",
+      "govFee": "€90 for adults (€45 for ages 6–11, free under 6) plus a VFS service charge",
+      "processing": "Decisions on C visas are generally reached within 15 calendar days; apply no earlier than six months before travel",
+      "officialUrl": "https://ambnewdelhi.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/"
+    }
   }
 ]
