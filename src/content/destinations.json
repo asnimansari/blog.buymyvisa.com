@@ -436,5 +436,24 @@
       "processing": "Apply online before departure; the official pages do not state a processing time",
       "officialUrl": "https://niaspeedy.immigration.gov.tw/nia_southeast/"
     }
+  },
+  {
+    "id": "australia",
+    "name": "Australia",
+    "iso3": "AUS",
+    "scene": "thailand",
+    "tagline": "Harbour views, laneway cafés and the Great Ocean Road, reached with a visitor visa applied for online.",
+    "capital": "Canberra",
+    "currency": "Australian dollar (AUD), roughly ₹55–60; check the day's rate",
+    "timezone": "Sydney and Melbourne: IST + 4:30 (IST + 5:30 during daylight saving, October to April)",
+    "flightFromIndia": "Usually one stop via Singapore, Kuala Lumpur or Bangkok: about 13–17 h in total",
+    "bestMonths": [9, 10, 11, 3, 4],
+    "visa": {
+      "type": "Visitor visa (subclass 600), applied for online; Home Affairs describes it as for tourists, business visitors or family visits for 3, 6 or 12 months",
+      "stay": "3, 6 or 12 months, as granted on your visa",
+      "govFee": "Not stated in the text we could load from the Home Affairs site; check its current visa pricing page",
+      "processing": "Not stated in the text we could load; apply well before you book non-refundable flights",
+      "officialUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600"
+    }
   }
 ]
